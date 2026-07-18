@@ -55,11 +55,13 @@ export async function activate(context: vscode.ExtensionContext) {
   logger.info(`MaaSupport version ${packageJson.version ?? 'dev'}`)
 
   const logPath = context.storageUri ?? context.globalStorageUri
+  // MAA logs are written under <storage>/debug (mimics MaaToolkit set_log_dir)
+  const debugLogPath = vscode.Uri.joinPath(logPath, 'debug')
 
   context.subscriptions.push(
     vscode.commands.registerCommand(commands.OpenMaaLog, async () => {
       const maaLogCandidates = ['maafw.log', 'maa.log'].map(name =>
-        vscode.Uri.joinPath(logPath, name)
+        vscode.Uri.joinPath(debugLogPath, name)
       )
       for (const maaLogFile of maaLogCandidates) {
         try {

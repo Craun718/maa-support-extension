@@ -44,6 +44,10 @@ src/
                                  #   设置全局 logger
 ```
 
+## MAA 日志目录
+
+`initMaa()` 设置 MaaFramework 日志目录时，模仿 MaaToolkit 的 `set_log_dir`：在 `maaLog`（Host 传入的 storage 路径）下追加 `debug` 子目录，递归创建后作为实际 `log_dir`。因此 MAA 原生日志（`maafw.log` 等）写入 `<storage>/debug/`，而非 storage 根目录。
+
 ## 依赖关系
 
 ### 工作区依赖

@@ -1,3 +1,4 @@
+import * as fs from 'node:fs/promises'
 import * as os from 'node:os'
 import * as path from 'node:path'
 import * as url from 'node:url'
@@ -50,5 +51,8 @@ export async function setupMaa(cfg: FullConfig) {
 export async function loadMaa(modulePath: string, logDir: string) {
   const importTarget = path.join(modulePath, '@maaxyz/maa-node/dist/index-client.js')
   await import(url.pathToFileURL(importTarget).toString())
-  maa.Global.log_dir = logDir
+  // Mimic MaaToolkit: logs land under <root>/debug
+  const debugDir = path.join(logDir, 'debug')
+  await fs.mkdir(debugDir, { recursive: true })
+  maa.Global.log_dir = debugDir
 }

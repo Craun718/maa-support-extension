@@ -23,7 +23,10 @@ export async function initMaa() {
 
   logger.info(maa.Global.version)
   maa.Global.debug_mode = option.debugMode
-  maa.Global.log_dir = option.maaLog
+  // Mimic MaaToolkit: logs land under <root>/debug
+  const debugDir = path.join(option.maaLog, 'debug')
+  await fs.mkdir(debugDir, { recursive: true })
+  maa.Global.log_dir = debugDir
 }
 
 type InstanceCache = {

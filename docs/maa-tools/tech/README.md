@@ -55,6 +55,10 @@ src/
 7. 收集结果, 按 mode 输出
 ```
 
+## MAA 日志目录
+
+`loadMaa()` 设置 `maa.Global.log_dir` 时，模仿 MaaToolkit 的 `set_log_dir`：在传入的 `logDir`（来自 `cfg.maaLogDir`）下追加 `debug` 子目录并递归创建，实际日志写入 `<logDir>/debug/`。check 与 test（worker）流程均复用此行为。
+
 ## 依赖关系
 
 ### 工作区依赖
