@@ -1,5 +1,7 @@
 packages:
   - pkgs/*
+allowBuilds:
+  esbuild: true
 
 patchedDependencies:
   jiti: patches/jiti-430.patch
