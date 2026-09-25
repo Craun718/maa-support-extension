@@ -19,7 +19,7 @@
     "lint": "tsc -p . --noEmit"
   },
   "dependencies": {
-    "pacote": "^21.4.0",
+    "pacote": "^21.5.1",
     "proper-lockfile": "^4.1.2",
     "semver": "^7.7.4"
   },
